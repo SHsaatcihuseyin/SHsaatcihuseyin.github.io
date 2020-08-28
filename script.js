@@ -1,16 +1,15 @@
 var array = [];
-
 var min = 0;
 var minindex = 0;
 var istheremin = false;
 var i = 0;
 
-for (let index = 0; index < (500 / 4); index++) {
-    array[index] = Math.floor(Math.random() * (500) + 4);
-}
-
 function setup() {
     createCanvas(550, 510);
+
+    for (let index = 0; index < (500 / 4); index++) { // Filling the array with random numbers
+        array[index] = Math.floor(Math.random() * (500) + 4);
+    }
 }
 
 function wait(ms) {
@@ -23,7 +22,7 @@ function wait(ms) {
 function draw() {
     background(220);
 
-    if (i < array.length) {
+    if (i < array.length) { // Sorting
         min = array[i];
         for (let j = i + 1; j < array.length; j++) {
             let next = array[j];
@@ -34,22 +33,16 @@ function draw() {
             }
         }
         if (istheremin) {
+            istheremin = false;
             array[minindex] = array[i];
             array[i] = min;
         }
     }
     i++;
 
-    /*for (let index = 0; index < 1000; index++) {
-        for (let index = 0; index < 1000; index++) {
-            for (let index = 0; index < 200; index++) {
-            }
-        }
-    }*/
+    wait(100); // Slow down the process
 
-    wait(100);
-
-    let b = 20;
+    let b = 20; // Coloring
     for (let k = 0; k < array.length; k++) {
         if (k === minindex) {
             stroke('green');
